@@ -6,7 +6,7 @@ resource "google_storage_bucket" "bucket" {
 resource "google_storage_bucket_object" "archive" {
   name   = "index.zip"
   bucket = google_storage_bucket.bucket.name
-  source = "./modules/functions/show_hi.py"
+  source = "./modules/functions/show_hi.zip"
 }
 
 resource "google_cloudfunctions_function" "function" {
@@ -24,11 +24,11 @@ resource "google_cloudfunctions_function" "function" {
 }
 
 # IAM entry for all users to invoke the function
-resource "google_cloudfunctions_function_iam_member" "invoker" {
-  project        = google_cloudfunctions_function.function.project
-  region         = google_cloudfunctions_function.function.region
-  cloud_function = google_cloudfunctions_function.function.name
+# resource "google_cloudfunctions_function_iam_member" "invoker" {
+#   project        = google_cloudfunctions_function.function.project
+#   region         = google_cloudfunctions_function.function.region
+#   cloud_function = google_cloudfunctions_function.function.name
 
-  role   = "roles/cloudfunctions.invoker"
-  member = "user:myFunctionInvoker@example.com"
-}
+#   role   = "roles/cloudfunctions.invoker"
+#   member = "allUsers"
+# }
