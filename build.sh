@@ -1,0 +1,1 @@
+zip -r ./applications/show_hi.zip ./applications/main.py
